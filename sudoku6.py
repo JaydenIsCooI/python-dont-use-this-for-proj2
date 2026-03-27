@@ -14,6 +14,9 @@ grid(1..9).
 
 subgrid(X,Y,G) :- cell(X), cell(Y), G = 1 + ((X-1)/3)*3 + (Y-1)/3.
 :- grid(G), num(N), 2 <= #count { X,Y : sudoku(X,Y,N), subgrid(X,Y,G) }.
+
+:- initial(X,Y,N), not sudoku(X,Y,N).
+
 #show sudoku/3.
 """
 
@@ -24,7 +27,6 @@ class Context:
 
     def initial(self) -> list[clingo.symbol.Symbol]:
         facts = []
-
         for (i, j), v in sorted(self.board.sudoku.items()):
             facts.append(
                 clingo.Function(
@@ -33,7 +35,6 @@ class Context:
                     True
                 )
             )
-
         return facts
 
 
@@ -54,7 +55,6 @@ class ClingoApp(Application):
 
         context = Context(board)
         ctl.ground([("base", [])], context=context)
-        ctl.ground([("base", [])])
         ctl.solve()
 
 

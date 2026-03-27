@@ -1,1 +1,1 @@
-﻿initial(X,Y,N) :- (X,Y,N) = @initial().
+﻿:- initial(X,Y,N), not sudoku(X,Y,N).
