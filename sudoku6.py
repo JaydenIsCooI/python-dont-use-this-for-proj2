@@ -54,6 +54,7 @@ class ClingoApp(Application):
 
         context = Context(board)
         ctl.ground([("base", [])], context=context)
+        ctl.ground([("base", [])])
         ctl.solve()
 
 
