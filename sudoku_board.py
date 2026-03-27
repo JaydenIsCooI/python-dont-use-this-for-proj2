@@ -28,7 +28,20 @@ class Sudoku:
     @classmethod
     def from_str(cls, s: str) -> "Sudoku":
         sudoku = {}
-        # YOUR CODE HERE
+        row = 0
+
+        for line in s.splitlines():
+            line = line.strip()
+            if not line:
+                continue
+
+            row += 1
+            values = line.split()
+
+            for col, value in enumerate(values, start=1):
+                if value != "-":
+                    sudoku[(row, col)] = int(value)
+
         return cls(sudoku)
 
     @classmethod
