@@ -7,9 +7,23 @@ class Sudoku:
         self.sudoku = sudoku
 
     def __str__(self) -> str:
-        s = ""
-        # YOUR CODE HERE
-        return s
+        rows = []
+
+        for i in range(1, 10):
+            parts = []
+
+            for j in range(1, 10):
+                parts.append(str(self.sudoku[(i, j)]))
+
+                if j in (3, 6):
+                    parts.append("")
+
+            rows.append(" ".join(parts))
+
+            if i in (3, 6):
+                rows.append("")
+
+        return "\n".join(rows)
 
     @classmethod
     def from_str(cls, s: str) -> "Sudoku":
